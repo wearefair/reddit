@@ -6,7 +6,7 @@ def initialize(app):
     """
     Provides the database session on the application object.
     """
-    app.database = Database(connection_url=Config.SQLALCHEMY_DB_URL,
+    app.database = Database(connection_url=Config.DATABASE_URL,
                             environment=Config.ENV, pool_size=1)
     app.db_session = app.database.session
 

@@ -21,6 +21,7 @@ from sqlalchemy_utils import (
 )
 
 from .base import Base
+from .mixins import HasUUID, HasCreatedBy, HasCreatedAtUpdatedAt
 
 
 DEFAULT_CHARSET = string.ascii_letters + string.digits + '!@#$%^&*()'
@@ -39,18 +40,10 @@ def default_password():
     return secure_random_string(32)
 
 
-class User(Base):
+class User(Base, HasUUID, HasCreatedBy, HasCreatedAtUpdatedAt):
     """ Reddit User """
 
     __tablename__ = 'user'
-
-    id = Column(
-        UUIDType,
-        primary_key=True,
-        default=uuid.uuid4,
-        nullable=False,
-        unique=True,
-        doc="UUID for the object")
 
     username = Column(
         String,

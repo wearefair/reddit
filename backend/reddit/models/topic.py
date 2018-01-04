@@ -17,20 +17,13 @@ from sqlalchemy_utils import (
 )
 
 from .base import Base
+from .mixins import HasUUID, HasCreatedBy, HasCreatedAtUpdatedAt
 
 
-class Topic(Base):
+class Topic(Base, HasUUID, HasCreatedBy, HasCreatedAtUpdatedAt):
     """ Topic """
 
     __tablename__ = 'topic'
-
-    id = Column(
-        UUIDType,
-        primary_key=True,
-        default=uuid.uuid4,
-        nullable=False,
-        unique=True,
-        doc="UUID for the object")
 
     user_id = Column(
         UUIDType,
