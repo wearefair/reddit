@@ -9,7 +9,8 @@ from sqlalchemy import (
     Column,
     ForeignKey,
     String,
-    Numeric
+    Numeric,
+    Integer
 )
 from sqlalchemy_utils import (
     UUIDType,
@@ -44,14 +45,21 @@ class Topic(Base):
         doc="Title of topic"
     )
 
-    score = Column(
-        Numeric(scale=2),
-        default=1,
+    num_upvotes = Column(
+        Integer,
+        default=0,
         nullable=False,
-        doc="Topic score (net upvotes)"
+        doc="Number of Upvotes"
     )
 
-    heat_level = Column(
+    num_downvotes = Column(
+        Integer,
+        default=0,
+        nullable=False,
+        doc="Number of Downvotes"
+    )
+
+    hotness_score = Column(
         Numeric(scale=2),
         default=1,
         nullable=False,
