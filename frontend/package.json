@@ -5,6 +5,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "express": "^4.16.2",
     "flux-standard-action": "^1.2.0",
     "immutable": "^3.8.1",
     "path": "^0.12.7",
@@ -48,6 +49,7 @@
     "watch": "webpack-dev-server",
     "test": "react-jest",
     "lint": "eslint",
-    "build": "webpack"
+    "build": "webpack",
+    "serve": "node index.js"
   }
 }
