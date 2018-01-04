@@ -4,7 +4,6 @@ User Model
 ==========
 """
 import string
-import uuid
 
 import nacl.utils
 from sqlalchemy import (
@@ -17,7 +16,6 @@ from sqlalchemy.orm import (
 from sqlalchemy_utils import (
     Password,
     PasswordType,
-    UUIDType,
 )
 
 from .base import Base

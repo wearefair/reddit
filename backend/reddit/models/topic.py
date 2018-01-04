@@ -3,8 +3,6 @@
 Topic Model
 ===================
 """
-import uuid
-
 from sqlalchemy import (
     Column,
     ForeignKey,

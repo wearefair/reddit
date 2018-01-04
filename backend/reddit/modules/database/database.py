@@ -11,7 +11,6 @@ from sqlalchemy.schema import (
     MetaData,
     Table,
 )
-
 from reddit.models import Base
 
 

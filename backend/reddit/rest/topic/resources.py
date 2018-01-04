@@ -1,9 +1,8 @@
 import json
 
-from reddit.rest.resource import DetailResource, ListResource
+from reddit.rest.resource import ListResource
 from reddit.models import Topic
 from flask import request, Response
-
 
 
 class TopicListResource(ListResource):
@@ -26,4 +25,3 @@ class TopicListResource(ListResource):
     def post(self):
         args = request.form
         print(args)
-
