@@ -1,8 +1,8 @@
 from reddit.rest.route import Route
-from reddit.rest.test.resources import serve_one
+from reddit.rest.test.resources import TopicListResource
 
 routes = [
-    Route('/test', serve_one)
+    Route('/home', TopicListResource)
 ]
 
 __all__ = [

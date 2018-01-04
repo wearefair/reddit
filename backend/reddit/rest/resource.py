@@ -1,6 +1,7 @@
 import logging
 
 from flask import (
+    current_app,
     request,
     views,
 )
@@ -22,6 +23,10 @@ logger = logging.getLogger(__name__)
 class Resource(views.MethodView):
     representations = None
     max_content_length = MAX_CONTENT_LENGTH
+
+    def __init__(self):
+        super(Resource, self).__init__()
+        self.db = current_app.db_session
 
     def dispatch_request(self, *args, **kwargs):
         if 'location' in request.path:
