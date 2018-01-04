@@ -1,11 +1,14 @@
+import json
+
 from reddit.rest.resource import DetailResource, ListResource
 from reddit.models import Topic
-from flask import request
+from flask import request, Response
+
 
 
 class TopicListResource(ListResource):
-    def list(self):
-        return [
+    def get(self):
+        resp = [
             {
                 'id': topic.id,
                 'title': topic.title,
@@ -18,8 +21,9 @@ class TopicListResource(ListResource):
                 'updated_at': topic.updated_at
             } for topic in self.db.query(Topic).all()
         ]
+        return Response(json.dumps(resp), mimetype='application/json')
 
-    def create(self):
+    def post(self):
         args = request.form
         print(args)
 

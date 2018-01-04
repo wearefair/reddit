@@ -8,4 +8,4 @@ ALL_ROUTES = [
 def initialize(app):
     for endpoints in ALL_ROUTES:
         for route in endpoints:
-            app.route(route.path)(route.handler)
+            app.add_url_rule(route.path, view_func=route.handler)

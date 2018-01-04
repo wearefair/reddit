@@ -34,7 +34,6 @@ class Resource(views.MethodView):
             if length is not None and length > self.max_content_length:
                 raise RequestTooLarge('{} must be less than {}'.format(
                     length, self.max_content_length))
-
         method = self.__class__.__dict__.get(request.method.lower(), None)
         if method is None and request.method == 'HEAD':
             method = self.__class__.__dict__.get('get', None)
