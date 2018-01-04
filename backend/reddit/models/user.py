@@ -6,20 +6,20 @@ User Model
 import string
 
 import nacl.utils
+
 from sqlalchemy import (
     Column,
     String,
 )
-from sqlalchemy.orm import (
-    validates,
-)
+from sqlalchemy.orm import validates
+
 from sqlalchemy_utils import (
     Password,
     PasswordType,
 )
 
 from .base import Base
-from .mixins import HasUUID, HasCreatedBy, HasCreatedAtUpdatedAt
+from .mixins import HasCreatedAtUpdatedAt, HasCreatedBy, HasUUID
 
 
 DEFAULT_CHARSET = string.ascii_letters + string.digits + '!@#$%^&*()'
