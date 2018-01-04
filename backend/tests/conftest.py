@@ -1,12 +1,12 @@
 import pytest
 
-from sqlalchemy.engine import create_engine
-from sqlalchemy.orm.session import Session
-
 from reddit.config import Config
 from reddit.server import create_app
 from reddit.models import *  # noqa
 from reddit.models import Base
+
+from sqlalchemy.engine import create_engine
+from sqlalchemy.orm.session import Session
 
 
 @pytest.fixture(scope='session')
