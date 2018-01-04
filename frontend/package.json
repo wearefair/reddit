@@ -1,7 +1,7 @@
 {
-  "name": "Mimosa",
+  "name": "Reddit",
   "version": "1.0.0",
-  "description": "Task Management Dashboard",
+  "description": "Fair interview",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
@@ -50,6 +50,9 @@
     "test": "react-jest",
     "lint": "eslint",
     "build": "webpack",
-    "serve": "node index.js"
+    "serve": "node index.js",
+    "build-docker": "yarn build && docker build -t skurtinc/reddit/frontend:latest .",
+    "docker-run": "docker run --name reddit-frontend -d -p 3000:3000 skurtinc/reddit/frontend",
+    "docker-stop": "docker kill reddit-frontend"
   }
 }
