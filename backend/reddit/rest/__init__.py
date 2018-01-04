@@ -1,7 +1,7 @@
-from reddit.rest.test import routes as test_routes
+from reddit.rest.topic import routes as topic_routes
 
 ALL_ROUTES = [
-    test_routes
+    topic_routes
 ]
 
 
