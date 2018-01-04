@@ -1,4 +1,4 @@
-from .server import create_app
+from reddit.server import create_app
 
 
 def main():

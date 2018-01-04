@@ -1,12 +1,14 @@
 from flask import Flask
-
+from reddit import rest
 
 class Reddit(Flask):
     def __init__(self, import_name):
         super(Reddit, self).__init__(import_name, static_url_path='')
 
     def init(self):
-        modules = []
+        modules = [
+            rest
+        ]
 
         for module in modules:
             module.initialize(self)
