@@ -4,14 +4,12 @@ from flask import (
     request,
     views,
 )
-
 from reddit.rest.exceptions import (
     ApiError,
     BadRequest,
     MethodNotAllowed,
     RequestTooLarge
 )
-
 from sqlalchemy.exc import (
     IntegrityError,
     StatementError,

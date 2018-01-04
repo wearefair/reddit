@@ -3,8 +3,10 @@
 User Model
 ==========
 """
+import string
 import uuid
 
+import nacl.utils
 from sqlalchemy import (
     Column,
     String,
@@ -12,7 +14,6 @@ from sqlalchemy import (
 from sqlalchemy.orm import (
     validates,
 )
-
 from sqlalchemy_utils import (
     Password,
     PasswordType,
@@ -20,6 +21,18 @@ from sqlalchemy_utils import (
 )
 
 from .base import Base
+
+
+DEFAULT_CHARSET = string.ascii_letters + string.digits + '!@#$%^&*()'
+
+
+def secure_random_string(length=32, charset=None):
+    charset = charset or DEFAULT_CHARSET
+    charset_length = len(charset)
+
+    def _get_char(byte):
+        return charset[byte % charset_length]
+    return "".join(map(_get_char, nacl.utils.random(length)))
 
 
 def default_password():

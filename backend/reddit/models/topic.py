@@ -2,10 +2,8 @@
 ===================
 Topic Model
 ===================
-
 """
-
-import arrow
+import uuid
 
 from sqlalchemy import (
     Column,
@@ -13,10 +11,7 @@ from sqlalchemy import (
     String,
     Numeric
 )
-from sqlalchemy.orm import relationship
-
 from sqlalchemy_utils import (
-    ArrowType,
     UUIDType,
 )
 
