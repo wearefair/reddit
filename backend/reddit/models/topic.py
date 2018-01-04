@@ -49,12 +49,6 @@ class Topic(Base):
         doc="Title of topic"
     )
 
-    title = Column(
-        String,
-        nullable=False,
-        doc="Title of topic"
-    )
-
     score = Column(
         Numeric(scale=2),
         default=1,
