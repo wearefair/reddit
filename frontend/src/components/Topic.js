@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './styles/Topic-styles';
 
 class Topic extends React.Component {
   constructor() {
@@ -8,18 +9,16 @@ class Topic extends React.Component {
   }
 
   render() {
-    const { title } = this.props;
+    const { topicId } = this.props;
 
     return (
-      <div>
-        <p>{title}</p>
-      </div>
+      <div style={styles.container}>Topic {topicId}</div>
     );
   }
 }
 
 Topic.propTypes = {
-  title: PropTypes.string.isRequired,
+  topicId: PropTypes.number.isRequired,
 };
 
 export default Topic;
