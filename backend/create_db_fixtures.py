@@ -30,8 +30,10 @@ db.commit()
 
 for i in range(10):
   topic = Topic(
-    title='Topic {}'.format(i),
     created_by=user,
+    hotness_score=i,
+    num_upvotes=i,
+    title='Topic {}'.format(i),
   )
   db.add(topic)
 db.commit()

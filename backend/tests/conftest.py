@@ -1,5 +1,8 @@
 import pytest
 
+from tests.fixtures.topics import * ## noqa
+from tests.fixtures.users import * ## noqa
+
 from reddit.config import Config
 from reddit.server import create_app
 from reddit.models import *  # noqa
