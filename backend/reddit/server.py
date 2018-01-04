@@ -1,5 +1,6 @@
 from flask import Flask
 from reddit import rest
+from reddit.modules import database
 
 
 class Reddit(Flask):
@@ -8,7 +9,8 @@ class Reddit(Flask):
 
     def init(self):
         modules = [
-            rest
+            rest,
+            database
         ]
 
         for module in modules:

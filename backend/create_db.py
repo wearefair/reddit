@@ -6,7 +6,7 @@ from sqlalchemy_utils import database_exists, create_database
 
 from reddit.models import Base
 
-db_url=os.environ['DATABASE_URL']
+db_url=os.environ['SQLALCHEMY_DB_URL']
 
 engine = create_engine(db_url)
 if not database_exists(engine.url):
