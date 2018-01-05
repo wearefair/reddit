@@ -6,7 +6,7 @@ from reddit.rest.topic.resources import (
 
 routes = [
     Route('/home/recent', TopicRecentListResource.as_view('topic_recent_resource')),
-    Route('/home/controversial', TopicControversialListResource.as_view('topic__controversial_resource'))
+    Route('/home/controversial', TopicControversialListResource.as_view('topic_controversial_resource'))
 
 ]
 
