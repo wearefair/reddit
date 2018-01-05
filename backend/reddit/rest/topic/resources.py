@@ -2,6 +2,8 @@ import json
 
 from reddit.rest.resource import ListResource
 from reddit.models import Topic, User
+from reddit.rest.resource import DetailResource, ListResource
+from reddit.models import Topic
 from flask import request, Response
 
 
@@ -50,6 +52,22 @@ class TopicListResource(ListResource):
                 'created_at': topic.created_at.isoformat(),
             }),  mimetype='application/json'
         ), 201
+
+
+class TopicDetailResource(DetailResource):
+    def put(self, id):
+        print("goes here")
+        args = request.args
+        print("args", args)
+        topic = self.db.query(Topic).filter(Topic.id == id).first()
+        print("or here?")
+        if args.get('is_upvote'):
+            print("how about here")
+            topic.num_upvotes += 1
+        elif args.get('is_downvote'):
+            topic.num_downvotes += 1
+        self.db.commit()
+        return topic
 
 
 class TopicControversialListResource(ListResource):

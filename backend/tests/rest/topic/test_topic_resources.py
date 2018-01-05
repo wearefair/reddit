@@ -59,3 +59,9 @@ def test_post_topic(app, db, test_user):
     data = json.loads(res.data)
     num_new_posts = len(data)
     assert num_new_posts == 1
+
+def test_topic_upvote(app, db, test_topics):
+    topic = test_topics[0]
+    initial_upvotes = topic.num_upvotes
+    res = app.put('/home/{}'.format(topic.id), query_string={'is_upvote': True})
+    assert topic.num_upvotes == initial_upvotes + 1
