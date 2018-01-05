@@ -2,7 +2,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import * as topicActions from '../actions/topicActions';
 import TopicRow from './TopicRow';
 import styles from './styles/FrontPage-styles';
@@ -46,8 +45,8 @@ function mapStateToProps(state) {
   return { topics: state.topics };
 }
 
-function mapDispatchToProps(dispatch) {
-  return { topicActions: bindActionCreators(topicActions, dispatch) };
+function mapDispatchToProps() {
+  return { topicActions };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FrontPage);
