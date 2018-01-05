@@ -1,9 +1,9 @@
-import arrow
 import pytest
 
 from reddit.models import (
     Topic,
 )
+
 
 @pytest.fixture(scope='function')
 def test_topics(db, test_user):
@@ -20,6 +20,7 @@ def test_topics(db, test_user):
     db.commit()
     return result
 
+
 @pytest.fixture(scope='function')
 def test_controversial_topics(db, test_user):
     result = []
@@ -35,6 +36,7 @@ def test_controversial_topics(db, test_user):
         result.append(topic)
     db.commit()
     return result
+
 
 @pytest.fixture(scope='function')
 def test_search_topics(db, test_user):

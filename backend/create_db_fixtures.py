@@ -17,7 +17,9 @@ engine = create_engine(db_url)
 db = scoped_session(sessionmaker(autocommit=False,
                                  autoflush=False,
                                  bind=engine))
-
+"""
+Creates Test User in database
+"""
 user = User(
     username='test_user',
     email='fair-reddit-user@mailinator.com',
@@ -28,6 +30,9 @@ user.created_by_id = user.id
 db.add(user)
 db.commit()
 
+"""
+Creates Range of Topics to populate database
+"""
 for i in range(10):
   topic = Topic(
     created_by=user,
