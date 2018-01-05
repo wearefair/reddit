@@ -23,13 +23,6 @@ class Topic(Base, HasUUID, HasCreatedBy, HasCreatedAtUpdatedAt):
 
     __tablename__ = 'topic'
 
-    user_id = Column(
-        UUIDType,
-        ForeignKey('user.id'),
-        nullable=True,
-        doc="user.id of topic creator"
-    )
-
     title = Column(
         String,
         nullable=False,
