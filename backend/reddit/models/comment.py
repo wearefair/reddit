@@ -3,6 +3,8 @@
 Comment Model
 =============
 """
+import uuid
+
 from sqlalchemy import (
     Column,
     ForeignKey,
@@ -17,13 +19,21 @@ from sqlalchemy_utils import (
 )
 
 from .base import Base
-from .mixins import HasCreatedAtUpdatedAt, HasCreatedBy, HasUUID
+from .mixins import HasCreatedAtUpdatedAt, HasCreatedBy
 
 
-class Comment(Base, HasUUID, HasCreatedAtUpdatedAt, HasCreatedBy):
+class Comment(Base, HasCreatedAtUpdatedAt, HasCreatedBy):
     """Reddit comment"""
 
     __tablename__ = 'comment'
+
+    id = Column(
+            UUIDType,
+            primary_key=True,
+            default=uuid.uuid4,
+            nullable=False,
+            unique=True,
+            doc="UUID for the object")
 
     content = Column(String, nullable=False, doc="Comment content")
 
@@ -34,6 +44,9 @@ class Comment(Base, HasUUID, HasCreatedAtUpdatedAt, HasCreatedBy):
         doc="ID of the topic"
     )
 
+    topic = relationship('Topic',
+                         backref=backref('comments'))
+
     parent_comment_id = Column(
         UUIDType,
         ForeignKey('comment.id'),
@@ -41,9 +54,8 @@ class Comment(Base, HasUUID, HasCreatedAtUpdatedAt, HasCreatedBy):
         doc="ID of the topic"
     )
 
-    parent = relationship("Comment", remote_side=[id])
-
-    children = relationship("Comment", backref('parent', remote_side=[id]))
+    children = relationship('Comment',
+                            backref=backref('parent', remote_side=[id]))
 
     num_upvotes = Column(
         Integer,
