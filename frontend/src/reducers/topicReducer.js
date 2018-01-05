@@ -7,6 +7,7 @@ export default function topics(state = initialState.topics, action) {
     case FETCH_TOPICS:
       return action;
     case RECEIVE_TOPICS:
+      console.log('here');
       newState = action.topics;
       return newState;
     default:

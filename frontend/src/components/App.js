@@ -7,6 +7,8 @@ import Topic from './Topic';
 import NotFoundRoute from './NotFoundRoute';
 import styles from './styles/App-styles';
 
+const store = configureStore();
+
 class App extends Component {
   constructor() {
     super();
@@ -16,7 +18,7 @@ class App extends Component {
   render() {
     return (
       <div style={styles.container}>
-        <Provider store={configureStore()}>
+        <Provider store={store}>
           <BrowserRouter>
             <Switch>
               <Route path="/topic/:topicId" component={Topic} />

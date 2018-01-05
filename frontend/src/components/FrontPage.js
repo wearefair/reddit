@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as topicActions from '../actions/topicActions';
+import { fetchTopics } from '../actions/topicActions';
 import TopicRow from './TopicRow';
 import styles from './styles/FrontPage-styles';
 
@@ -13,12 +13,10 @@ class FrontPage extends React.Component {
   }
 
   componentWillMount() {
-    this.props.topicActions.fetchTopics();
+    this.props.fetchTopics();
   }
 
   render() {
-    console.log(this.props);
-
     const listItems = this.props.topics.map(topic =>
       (
         <li key={topic.title} style={styles.topicsContainer}>
@@ -48,7 +46,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps() {
-  return { topicActions };
+  return { fetchTopics };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FrontPage);

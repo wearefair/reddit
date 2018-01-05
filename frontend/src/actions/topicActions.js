@@ -11,5 +11,8 @@ export function fetchTopics() {
     { title: 'Topic 2' },
   ];
 
-  return dispatch => dispatch(receiveTopics(topics));
+  return (dispatch) => {
+    console.log(topics);
+    return dispatch(receiveTopics(topics));
+  };
 }
