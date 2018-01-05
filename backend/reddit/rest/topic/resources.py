@@ -36,7 +36,10 @@ class TopicControversialListResource(ListResource):
             Topic.num_upvotes >= controversial_threshold,
             Topic.num_downvotes >= controversial_threshold,
         ).order_by(Topic.created_at.desc()).all()
-        filtered_topics = [t for t in all_topics if abs(t.num_upvotes - t.num_downvotes) <= controversial_difference]
+        filtered_topics = [
+            t for t in all_topics
+            if abs(t.num_upvotes -t.num_downvotes) <= controversial_difference
+        ]
 
         resp = [
             {
@@ -50,5 +53,26 @@ class TopicControversialListResource(ListResource):
                 'created_at': topic.created_at.isoformat(),
                 'updated_at': topic.updated_at.isoformat(),
             } for topic in filtered_topics
+        ]
+        return Response(json.dumps(resp), mimetype='application/json')
+
+
+class TopicSearchListResource(ListResource):
+    def get(self):
+        search = request.args.get('search', '')
+        resp = [
+            {
+                'id': str(topic.id),
+                'title': topic.title,
+                'user_id': str(topic.user_id),
+                'num_upvotes': int(topic.num_upvotes),
+                'num_downvotes': int(topic.num_downvotes),
+                'hotness_score': float(topic.hotness_score),
+                'created_by_id': str(topic.created_by_id),
+                'created_at': topic.created_at.isoformat(),
+                'updated_at': topic.updated_at.isoformat(),
+            } for topic in self.db.query(Topic).filter(
+                    Topic.title == search
+                ).order_by(Topic.created_at.desc()).all()
         ]
         return Response(json.dumps(resp), mimetype='application/json')

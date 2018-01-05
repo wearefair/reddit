@@ -12,7 +12,6 @@ class Reddit(Flask):
             rest,
             database
         ]
-
         for module in modules:
             module.initialize(self)
 
