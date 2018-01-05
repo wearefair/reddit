@@ -17,7 +17,7 @@ class FrontPage extends React.Component {
   }
 
   render() {
-    console.log(this.props.state);
+    console.log(this.props);
 
     const listItems = this.props.topics.map(topic =>
       (
