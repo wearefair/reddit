@@ -6,13 +6,11 @@ User Model
 import string
 
 import nacl.utils
-
 from sqlalchemy import (
     Column,
     String,
 )
 from sqlalchemy.orm import validates
-
 from sqlalchemy_utils import (
     Password,
     PasswordType,

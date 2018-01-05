@@ -13,7 +13,6 @@ from sqlalchemy import (
     String,
 )
 from sqlalchemy.orm import backref, relationship
-
 from sqlalchemy_utils import (
     UUIDType
 )

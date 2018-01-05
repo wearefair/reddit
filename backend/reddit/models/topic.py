@@ -5,13 +5,9 @@ Topic Model
 """
 from sqlalchemy import (
     Column,
-    ForeignKey,
     String,
     Numeric,
     Integer
-)
-from sqlalchemy_utils import (
-    UUIDType,
 )
 
 from .base import Base

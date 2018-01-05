@@ -1,7 +1,6 @@
 import json
 
 from flask import Response, request
-
 from reddit.models import Comment, User
 from reddit.rest.resource import ListResource
 

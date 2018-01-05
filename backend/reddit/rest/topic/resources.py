@@ -23,6 +23,10 @@ class TopicListResource(ListResource):
         return Response(json.dumps(resp), mimetype='application/json')
 
     def post(self):
+        """
+        Example curl:
+        `curl -H "Content-Type: application/json" -X POST -d '{"title": "test"}' http://127.0.0.1:5000/home`
+        """
         args = request.json
         print(args)
         topic = Topic(
@@ -57,7 +61,7 @@ class TopicControversialListResource(ListResource):
         ).order_by(Topic.created_at.desc()).all()
         filtered_topics = [
             t for t in all_topics
-            if abs(t.num_upvotes -t.num_downvotes) <= controversial_difference
+            if abs(t.num_upvotes - t.num_downvotes) <= controversial_difference
         ]
 
         resp = [
