@@ -5,7 +5,7 @@ from reddit.models import (
 )
 
 
-def test_comment_list_resource(app, db, test_topics, test_user):
+def test_listing_comments(app, db, test_topics, test_user):
     for i in range(10):
         comment = Comment(
             topic=test_topics[0],
@@ -33,4 +33,37 @@ def test_comment_list_resource(app, db, test_topics, test_user):
     print(res.data)
     data = json.loads(res.data)
     assert len(data) == 11
+    assert any(d['parent_id'] is not None for d in data)
+
+
+def test_creating_comment(app, db, test_topics, test_user):
+    data = {
+        'content': "Wow, what a weird weird system.",
+        'parent_comment_id': None
+    }
+
+    res = app.post('/comments/{}'.format(test_topics[0].id),
+                   data=json.dumps(data), content_type='application/json')
+    assert res.status_code == 201
+    data = json.loads(res.data)
+    assert 'id' in data
+    assert 'parent_id' in data
+    assert 'content' in data
+
+    res = app.get('/comments/{}'.format(test_topics[0].id))
+    assert res.status_code == 200
+    data = json.loads(res.data)
+    assert len(data) == 1
+
+    d2 = {
+        'content': "Noo!",
+        'parent_comment_id': data[0]['id']
+    }
+    res = app.post('/comments/{}'.format(test_topics[0].id),
+                   data=json.dumps(d2), content_type='application/json')
+
+    res = app.get('/comments/{}'.format(test_topics[0].id))
+    assert res.status_code == 200
+    data = json.loads(res.data)
+    assert len(data) == 2
     assert any(d['parent_id'] is not None for d in data)
