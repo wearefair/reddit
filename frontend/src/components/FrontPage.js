@@ -41,12 +41,12 @@ class FrontPage extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { topics: state.topics };
-}
+const mapStateToProps = state => ({
+  topics: state.topics,
+});
 
-function mapDispatchToProps() {
-  return { fetchTopics };
-}
+const mapDispatchToProps = {
+  fetchTopics,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(FrontPage);

@@ -7,8 +7,8 @@ export function receiveTopics(json) {
 
 export function fetchTopics() {
   const topics = [
-    { title: 'Topic 1' },
-    { title: 'Topic 2' },
+    { title: 'Topic 1', votes: 20, commentCount: 5000 },
+    { title: 'Topic 2', votes: 100, commentCount: 100 },
   ];
 
   return (dispatch) => {
