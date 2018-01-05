@@ -12,6 +12,7 @@ class TopicListResource(ListResource):
             {
                 'id': str(topic.id),
                 'title': topic.title,
+                'created_by_id': str(topic.created_by_id),
                 'num_upvotes': int(topic.num_upvotes),
                 'num_downvotes': int(topic.num_downvotes),
                 'hotness_score': float(topic.hotness_score),
@@ -68,6 +69,7 @@ class TopicControversialListResource(ListResource):
             {
                 'id': str(topic.id),
                 'title': topic.title,
+                'created_by_id': str(topic.created_by_id),
                 'num_upvotes': int(topic.num_upvotes),
                 'num_downvotes': int(topic.num_downvotes),
                 'hotness_score': float(topic.hotness_score),
@@ -86,6 +88,7 @@ class TopicSearchListResource(ListResource):
             {
                 'id': str(topic.id),
                 'title': topic.title,
+                'created_by_id': str(topic.created_by_id),
                 'num_upvotes': int(topic.num_upvotes),
                 'num_downvotes': int(topic.num_downvotes),
                 'hotness_score': float(topic.hotness_score),
