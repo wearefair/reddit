@@ -37,7 +37,7 @@ def test_search_list_topics_fail(app, db, test_topics, test_search_topics):
     assert len(response_json) != test_search_topics
 
 def test_post_topic(app, db, test_user):
-    data = {
+    post_data = {
         'title': "Wow, what a weird weird system.",
     }
 
@@ -48,12 +48,11 @@ def test_post_topic(app, db, test_user):
     assert num_posts == 0
 
     res = app.post('/home',
-                   data=json.dumps(data), content_type='application/json')
+                   data=json.dumps(post_data), content_type='application/json')
     assert res.status_code == 201
     data = json.loads(res.data)
     assert 'id' in data
-    assert 'parent_id' in data
-    assert 'content' in data
+    assert 'title' in data
 
     res = app.get('/home')
     assert res.status_code == 200

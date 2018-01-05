@@ -1,7 +1,7 @@
 import json
 
 from reddit.rest.resource import ListResource
-from reddit.models import Topic
+from reddit.models import Topic, User
 from flask import request, Response
 
 
@@ -27,7 +27,7 @@ class TopicListResource(ListResource):
         print(args)
         topic = Topic(
             title=args['title'],
-            created_by=self.db.query(User).first()
+            created_by=self.db.query(User).first(),
         )
 
         self.db.add(topic)
@@ -39,10 +39,10 @@ class TopicListResource(ListResource):
                     'id': str(topic.created_by_id),
                     'email': topic.created_by.email,
                 },
-                'num_upvotes': int(comment.num_upvotes),
-                'num_downvotes': int(comment.num_downvotes),
-                'hotness_score': float(comment.hotness_score),
-                'created_at': comment.created_at.isoformat(),
+                'num_upvotes': int(topic.num_upvotes),
+                'num_downvotes': int(topic.num_downvotes),
+                'hotness_score': float(topic.hotness_score),
+                'created_at': topic.created_at.isoformat(),
             }),  mimetype='application/json'
         ), 201
 
