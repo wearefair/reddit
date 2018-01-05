@@ -5,7 +5,7 @@ from reddit.models import Topic
 from flask import request, Response
 
 
-class TopicRecentListResource(ListResource):
+class TopicListResource(ListResource):
     def get(self):
 
         resp = [
@@ -36,7 +36,7 @@ class TopicControversialListResource(ListResource):
             Topic.num_upvotes >= controversial_threshold,
             Topic.num_downvotes >= controversial_threshold,
         ).order_by(Topic.created_at.desc()).all()
-        filtered_topics = [t for t in all_topics if abs(t.num_upvotes -t.num_downvotes) >= controversial_difference]
+        filtered_topics = [t for t in all_topics if abs(t.num_upvotes - t.num_downvotes) <= controversial_difference]
 
         resp = [
             {

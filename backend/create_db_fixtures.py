@@ -36,4 +36,14 @@ for i in range(10):
     title='Topic {}'.format(i),
   )
   db.add(topic)
+
+for i in range(11, 15):
+  topic = Topic(
+    created_by=user,
+    hotness_score=2*i,
+    num_upvotes=i,
+    num_downvotes=i,
+    title='Controversial Topic {}'.format(i),
+  )
+  db.add(topic)
 db.commit()
