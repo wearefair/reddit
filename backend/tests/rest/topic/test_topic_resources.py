@@ -35,3 +35,28 @@ def test_search_list_topics_fail(app, db, test_topics, test_search_topics):
     sorted_response = sorted(response_json, key=lambda x: x['created_at'], reverse=True)
     assert response_json == sorted_response
     assert len(response_json) != test_search_topics
+
+def test_post_topic(app, db, test_user):
+    data = {
+        'title': "Wow, what a weird weird system.",
+    }
+
+    res = app.get('/home')
+    assert res.status_code == 200
+    data = json.loads(res.data)
+    num_posts = len(data)
+    assert num_posts == 0
+
+    res = app.post('/home',
+                   data=json.dumps(data), content_type='application/json')
+    assert res.status_code == 201
+    data = json.loads(res.data)
+    assert 'id' in data
+    assert 'parent_id' in data
+    assert 'content' in data
+
+    res = app.get('/home')
+    assert res.status_code == 200
+    data = json.loads(res.data)
+    num_new_posts = len(data)
+    assert num_new_posts == 1

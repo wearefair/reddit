@@ -12,7 +12,6 @@ class TopicListResource(ListResource):
             {
                 'id': str(topic.id),
                 'title': topic.title,
-                'user_id': str(topic.user_id),
                 'num_upvotes': int(topic.num_upvotes),
                 'num_downvotes': int(topic.num_downvotes),
                 'hotness_score': float(topic.hotness_score),
@@ -24,8 +23,28 @@ class TopicListResource(ListResource):
         return Response(json.dumps(resp), mimetype='application/json')
 
     def post(self):
-        args = request.form
+        args = request.json
         print(args)
+        topic = Topic(
+            title=args['title'],
+            created_by=self.db.query(User).first()
+        )
+
+        self.db.add(topic)
+        self.db.commit()
+        return Response(json.dumps({
+                'id': str(topic.id),
+                'title': topic.title,
+                'created_by': {
+                    'id': str(topic.created_by_id),
+                    'email': topic.created_by.email,
+                },
+                'num_upvotes': int(comment.num_upvotes),
+                'num_downvotes': int(comment.num_downvotes),
+                'hotness_score': float(comment.hotness_score),
+                'created_at': comment.created_at.isoformat(),
+            }),  mimetype='application/json'
+        ), 201
 
 
 class TopicControversialListResource(ListResource):
@@ -45,7 +64,6 @@ class TopicControversialListResource(ListResource):
             {
                 'id': str(topic.id),
                 'title': topic.title,
-                'user_id': str(topic.user_id),
                 'num_upvotes': int(topic.num_upvotes),
                 'num_downvotes': int(topic.num_downvotes),
                 'hotness_score': float(topic.hotness_score),
@@ -64,7 +82,6 @@ class TopicSearchListResource(ListResource):
             {
                 'id': str(topic.id),
                 'title': topic.title,
-                'user_id': str(topic.user_id),
                 'num_upvotes': int(topic.num_upvotes),
                 'num_downvotes': int(topic.num_downvotes),
                 'hotness_score': float(topic.hotness_score),
