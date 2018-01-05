@@ -78,4 +78,7 @@ module.exports = {
     ],
   },
   plugins: [HtmlWebpackPluginConfig, DotEnvPlugin],
+  devServer: {
+    historyApiFallback: true
+  },
 };

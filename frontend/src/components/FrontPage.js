@@ -17,6 +17,8 @@ class FrontPage extends React.Component {
   }
 
   render() {
+    console.log(this.props.state);
+
     const listItems = this.props.topics.map(topic =>
       (
         <li key={topic.title} style={styles.topicsContainer}>

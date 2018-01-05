@@ -26,7 +26,7 @@ class TopicRow extends React.Component {
           </Link>
         </div>
         <div style={styles.topicContainer}>
-          <Link to="/topic" style={styles.topicLink}>
+          <Link to="/topic/1234" style={styles.topicLink}>
             <p style={styles.topicTitle}>
               {title}
             </p>

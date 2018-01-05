@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import configureStore from '../store/configureStore';
 import FrontPage from './FrontPage';
+import Topic from './Topic';
+import NotFoundRoute from './NotFoundRoute';
 import styles from './styles/App-styles';
 
 class App extends Component {
@@ -11,7 +16,15 @@ class App extends Component {
   render() {
     return (
       <div style={styles.container}>
-        <FrontPage />
+        <Provider store={configureStore()}>
+          <BrowserRouter>
+            <Switch>
+              <Route path="/topic/:topicId" component={Topic} />
+              <Route exact path="/" component={FrontPage} />
+              <Route path="*" exact component={NotFoundRoute} />
+            </Switch>
+          </BrowserRouter>
+        </Provider>
       </div>
     );
   }
